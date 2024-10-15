@@ -1,0 +1,73 @@
+﻿{% extends 'empls/base_empls.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Emoloyees_sort
+{% endblock %}
+
+
+{% block content %}
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 100%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+
+	<table>
+  		<tr>
+		 
+   		 <th style="width:10%">Имя</th>
+		 <th style="width:10%">Должность</th>
+		 <th style="width:10%">Дата_приема</th>
+		 <th style="width:10%">Зарплата</th>
+		 <th style="width:10%">Начальник</th>
+		
+		 
+  		 </tr>
+	
+	
+		
+	{% for emp in employees %}
+		
+		
+		<tr>
+		
+		<td><a href="{{emp.get_absolute_url}}">{{emp.name}}</a></td>
+		<td>{{emp.position}}</td>
+	  	<td>{{emp.date_coming}}</td>
+		<td>{{emp.cash}}</td>
+		<td>{{emp.director}}</td>
+		
+
+    		
+		</tr>
+			 	
+	{% endfor %}
+	
+		
+	</table>
+
+
+<br>
+
+</br>
+{{s}}
+
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->

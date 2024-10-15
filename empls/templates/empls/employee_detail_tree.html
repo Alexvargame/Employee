@@ -1,0 +1,55 @@
+﻿{% extends 'empls/base_empls.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Employee
+{% endblock %}
+
+
+{% block content %}
+	<div class="card" style="width: 50rem;">
+ 	 <div class="card-header">
+  	  ИНформация по сотруднику
+ 	 </div>
+ 	 <ul class="list-group list-group-flush">
+ 	   <li class="list-group-item">ФИО-{{employee.name}}</li>
+  
+ 	 </ul>
+	</div>	
+	<table>
+  		<tr> 
+   		 <th style="width:10%">Должность   {{employee.position}}</th>
+		</tr>
+		<tr>
+		 <th style="width:10%">Дата приема на работу  {{employee.date_coming}}</th>
+		</tr>
+		<tr>
+	   	 <th style="width:10%">Зарплата  {{employee.cash}}</th>
+		</tr>
+		<tr>
+		 <th style="width:10%">Непосредственный начальник {{employee.parent}} </th>
+		</tr>
+		<tr>
+		 <th style="width:10%">Подчиненные </br>
+				   {%for sub in subordinate%}
+					<a href="{{sub.get_absolute_url}}">{{sub}}</a></br>
+				   {%endfor%}
+				   </th>
+		</tr>
+		<tr>	
+		<img src="{{employee.image.url}}" style="width: 100px; height: auto;">
+		
+  		 </tr>
+	
+
+	</table>
+
+<a style="width:10%" class="btn btn-primary" href="{{employee.get_update_tree_url}}" role="button">Редактировать данные сотрудника</a>
+<a style="width:10%" class="btn btn-primary" href="{% url 'reorganisation_tree_url' pk=employee.id%}" role="button">Реорганизация</a>
+<a style="width:10%" class="btn btn-primary" href="{{employee.get_delete_tree_url}}" role="button">Удалить сотрудника</a>
+
+
+{% endblock %} 
+

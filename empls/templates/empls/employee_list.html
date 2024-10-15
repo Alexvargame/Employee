@@ -1,0 +1,96 @@
+﻿{% extends 'empls/base_empls.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Cities
+{% endblock %}
+
+
+{% block content %}
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 100%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+{%for pos in positions%}
+	
+	{{pos}}
+	<table>
+  		<tr>
+		 
+   		 <th style="width:10%">Имя</th>
+		 <th style="width:10%">Должность</th>
+		 <th style="width:10%">Дата_приема</th>
+		 <th style="width:10%">Зарплата</th>
+		 <th style="width:10%">Начальник</th>
+		 <th style="width:10%">Фото</th>
+		 <th style="width:10%">Подчиненные</th>
+		 
+  		 </tr>
+	
+	
+		
+	{% for emp in employees %}
+		
+		{%if pos.name == emp.position%}
+		<tr>
+		{% if user.is_authenticated and user.is_staff%}
+		<td><a href="{{emp.get_absolute_url}}">{{emp.name}}</a></td>
+		{%else%}
+		<td>{{emp.name}}</td>
+		{%endif%}
+		<td>{{emp.position}}</td>
+	  	<td>{{emp.date_coming}}</td>
+		<td>{{emp.cash}}</td>
+		<td>{{emp.director}}</td>
+		<td style="width:10%"><img src="{{emp.image.url}}" style="width: 50px; height: auto;"></td>	
+		<td>{%for k, v in emp_dict.items%}
+			{%if emp.name == k%}
+				
+				{%for vv in v %}</br>
+				{% if user.is_authenticated and user.is_staff%}
+				 <a href="{{vv.get_absolute_url}}">{{vv}}</a>
+				{%else%}
+				
+				{{vv}}
+				{%endif%}
+				{%endfor%}
+				
+				
+			{%endif%}
+		    {%endfor%}
+		</td>
+		
+    		
+		</tr>
+		{%endif%}	 	
+	{% endfor %}
+	
+		
+	</table>
+
+{%endfor%}
+<a class="btn btn-primary" href="{%url 'employee_create_url'%}" role="button">Добавить сотрудника</a>
+
+<br>
+{{s1}}
+</br>
+
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->

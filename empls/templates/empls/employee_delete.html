@@ -1,0 +1,30 @@
+﻿{% extends 'empls/base_empls.html'%}
+
+ 
+{% block title %}
+		
+	Delete Employee
+{% endblock %}
+
+
+{% block content %}
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+
+}
+</style>
+	
+	
+
+	<form action="{{emp.get_delete_url}}" method='post'>
+		{% csrf_token %}
+	<h3>Вы уверены, что хотите удалить объект?<b>"{{emp.id}}"</b></h3>
+	<a href="{{emp.get_absolute_url}}">Отменить</a>
+	<button type="submit" class="btn btn-danger">Удалить</button>
+	</form>
+	
+
+{% endblock %} 
+

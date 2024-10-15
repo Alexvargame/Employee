@@ -1,0 +1,31 @@
+{% extends 'empls/base_empls.html'%}
+ {% load mptt_tags %}
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<ul>
+    {% recursetree subs %}
+        <li>
+            {{ node.name }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    {{ children }}
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>
+
+ 
+
+
+{% endblock %} 

@@ -1,0 +1,83 @@
+﻿{% extends 'empls/base_empls.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Emoloyees_reorganisation
+{% endblock %}
+
+
+{% block content %}
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 50%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+
+Сотрудник -- {{emp}}
+Текущая должность -- {{emp.position}}
+<br>Подчиненные</br> 
+<form action="" style="width:70%" %}" method='post' enctype="multipart/form-data">
+{% csrf_token %}
+<div class="form-group">
+	<table>
+  		<tr>
+		 
+   		 <th style="width:10%">Имя</th>
+		 <th style="width:10%">Должность</th>
+		 <th style="width:10%">Новый начальник</th>
+		
+		 
+  		 </tr>
+	
+	
+		
+	{% for sub in subordinate %}
+		
+		
+		<tr>
+		
+		<td><a href="">{{sub.name}}</a></td>
+		<td>{{sub.position}}</td>
+		<td>
+		
+		{{form.director}}
+		
+		</td>
+		
+		
+		
+
+		
+
+		</tr>
+			 	
+	{% endfor %}
+	
+		
+	</table>
+</div`>
+<button type="submit" class="btn btn-primary">Сохранить</button>
+
+		</form>
+<br>
+{{s}}
+</br>
+{{s1}}
+
+{% endblock %} 
+
+<!--{flat.get_absolute_url}<td>{{ch_form.director}}</td>.director.field.choices}}-->

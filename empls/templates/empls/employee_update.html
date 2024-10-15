@@ -1,0 +1,54 @@
+﻿{% extends 'empls/base_empls.html'%}
+ 
+	<h1>HI</h1>
+ 
+{% block title %}
+		
+	Update Employee
+{% endblock %}
+
+
+{% block content %}
+	<style>
+		table {
+ 		 font-family: arial, sans-serif;
+ 		 border-collapse: collapse;
+ 		 width: 100%;
+		}
+
+		td, th {
+  		border: 1px solid #dddddd;
+  		text-align: left;
+  		padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  		background-color: #dddddd;
+		}
+	</style>
+	<form action="{{emp.get_update_url}}" method='post' enctype="multipart/form-data">
+		{% csrf_token %}
+	<div class="form-group">
+	<table>
+  		<tr>
+		 
+   		 <th style="width:10%">ФИО{{form.name}}</th>
+		 <th style="width:10%">Должность{{form.position}}</th>
+		 <th style="width:10%">Зарплата{{form.cash}}</th>
+		 <th style="width:10%">Начальник{{form.director}}</th>
+		 <th style="width:10%">Начальник{{form.image}}</th>
+		 
+		
+  		 </tr>
+	
+		
+	</table>
+	</div>
+<button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+{{s}}
+
+
+{% endblock %} 
+
+<!--{flat.get_absolute_url}-->
